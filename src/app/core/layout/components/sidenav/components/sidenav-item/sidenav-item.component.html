@@ -1,0 +1,19 @@
+@if (userProfile) {
+  <div class="pl-2.5 pr-4 w-full">
+    @if (navItem.allowedRoles.includes(userProfile.role)) {
+      <div
+        class="item"
+        [routerLinkActiveOptions]="navItem.routerLinkActiveOptions || { exact: false }"
+        [routerLink]="navItem.route"
+        routerLinkActive="active"
+      >
+        <mat-icon [fontIcon]="navItem.icon" class="flex-none item-icon"></mat-icon>
+        <span class="flex-auto item-label">{{ navItem.label | titlecase }}</span>
+      </div>
+    }
+  </div>
+} @else {
+  <div class="pl-2.5 pr-4 w-full">
+    <p class="flex-auto item-label">User not logged In</p>
+  </div>
+}

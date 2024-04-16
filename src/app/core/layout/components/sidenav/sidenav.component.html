@@ -1,0 +1,23 @@
+<div class="sidenav flex flex-col">
+  <div class="logo-container">
+    <div class="py-1.5">
+      <div class="h-[52px] min-w-[143px] px-2 py-1 flex flex-row justify-center items-center">
+        <app-app-logo></app-app-logo>
+      </div>
+    </div>
+  </div>
+
+  <div class="w-full flex flex-col flex-auto">
+    <div class="pr-2 flex flex-col gap-2">
+      <div class="w-full flex flex-auto flex-col">
+        @for (navItem of navItems; track navItem.route) {
+          <app-sidenav-item [navItem]="navItem" [userProfile]="userProfile$ | async"></app-sidenav-item>
+        }
+      </div>
+    </div>
+  </div>
+
+  <div class="w-full flex-none flex flex-col px-6 border-t border-t-gray-100">
+    <app-sidenav-user [userProfile]="userProfile$ | async"></app-sidenav-user>
+  </div>
+</div>

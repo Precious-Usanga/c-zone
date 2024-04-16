@@ -1,0 +1,178 @@
+<div class="w-full flex flex-col justify-center gap-8">
+  <div class="h-64 w-full bg-no-repeat bg-center bg-cover" [style.background-image]="countryFlagUrl(country.flags.svg)">
+
+    <div class="relative top-48 left-24">
+      <img class="w-20 h-auto object-cover" [src]="country.coatOfArms.svg" [alt]="country.name.common + ' coat of arms'">
+    </div>
+  </div>
+
+  <div class="w-full flex flex-row gap-4 items-center justify-end">
+    <button
+      mat-flat-button
+      color="primary"
+      *appAllowedRoles="[ROLES.ADMIN]"
+    >
+      <mat-icon [fontIcon]="editIcon"></mat-icon>
+      Edit Country
+    </button>
+
+    <button
+      mat-flat-button
+      color="warn"
+      *appAllowedRoles="[ROLES.ADMIN]"
+    >
+      <mat-icon [fontIcon]="deleteIcon"></mat-icon>
+      Delete Country
+    </button>
+  </div>
+
+  <div class="w-full flex flex-col items-center">
+    <div class="w-full sm:w-3/4 flex flex-col gap-6 py-6">
+      <div class="flex flex-col sm:flex-row items-center gap-2">
+        <div class="w-full sm:w-1/4 flex-none flex flex-col gap-1">
+          <h1 class="text-sm font-bold">Common Name</h1>
+          <p>{{ country.name.common }}</p>
+        </div>
+
+        <div class="w-full flex-auto flex flex-col gap-1">
+          <h1 class="text-sm font-bold">Official Name</h1>
+          <p>{{ country.name.official }}</p>
+        </div>
+
+        <div class="w-full sm:w-1/4 flex-none flex flex-col gap-1">
+          <h1 class="text-sm font-bold">Alt Spellings</h1>
+          <p>{{ country.altSpellings.join(', ') }}</p>
+        </div>
+      </div>
+
+      <mat-divider class="border-t-gray-200"></mat-divider>
+
+      <div class="flex flex-col sm:flex-row items-center gap-2">
+        <div class="w-full sm:w-1/4 flex-none flex flex-col gap-1">
+          <h1 class="text-sm font-bold">Independent?</h1>
+          <p> {{ country.independent ? 'Yes' : 'No' }}</p>
+        </div>
+
+        <div class="w-full flex-auto flex flex-col gap-1">
+          <h1 class="text-sm font-bold">UN Member?</h1>
+          <p class="text-sm"> {{ country.unMember ? 'Yes' : 'No' }}</p>
+        </div>
+
+        <div class="w-full sm:w-1/4 flex-none flex flex-col gap-1">
+          <h1 class="text-sm font-bold">Landlocked?</h1>
+          <p class="text-sm"> {{ country.landlocked ? 'Yes' : 'No' }}</p>
+        </div>
+      </div>
+
+      <mat-divider class="border-t-gray-200"></mat-divider>
+
+      <div class="flex flex-col sm:flex-row items-center gap-2">
+        <div class="w-full sm:w-1/4 flex-none flex flex-col gap-1">
+          <h1 class="text-sm font-bold">Capital</h1>
+          <p> {{ country.capital }}</p>
+        </div>
+
+        <div class="w-full flex-auto flex flex-col gap-1">
+          <h1 class="text-sm font-bold">Capital Info</h1>
+          <p class="text-sm"> {{ country.capitalInfo.latlng.join(', ') }}</p>
+        </div>
+
+        <div class="w-full sm:w-1/4 flex-none flex flex-col gap-1">
+          <h1 class="text-sm font-bold">Status</h1>
+          <p class="text-sm"> {{ country.status }}</p>
+        </div>
+      </div>
+
+      <mat-divider class="border-t-gray-200"></mat-divider>
+
+      <div class="flex flex-row items-center gap-2">
+        <div class="w-1/4 flex-none">
+          <h1 class="text-sm font-bold">Currencies</h1>
+        </div>
+
+        <div class="w-full flex-auto">
+          @for (currency of country.currencies | keyvalue; track currency.key; let last = $last; ) {
+            <span class="text-sm">{{ currency.value.symbol }} - {{ currency.value.name }}{{ last ? '' : ','}}</span>
+          }
+        </div>
+      </div>
+
+      <mat-divider class="border-t-gray-200"></mat-divider>
+
+      <div class="flex flex-row items-center gap-2">
+        <div class="w-1/4 flex-none">
+          <h1 class="text-sm font-bold">Languages</h1>
+        </div>
+
+        <div class="flex-auto">
+          @for (language of country.languages | keyvalue; track language.key; let last = $last; ) {
+            <span class="text-sm">{{ language.value }}{{ last ? '' : ','}}</span>
+          }
+        </div>
+      </div>
+
+      <mat-divider class="border-t-gray-200"></mat-divider>
+
+      <div class="flex flex-col sm:flex-row items-center gap-2">
+        <div class="w-full sm:w-1/4 flex-none flex flex-col gap-1">
+          <h1 class="text-sm font-bold">Population</h1>
+          <p> {{ country.population | number }}</p>
+        </div>
+
+        <div class="w-full flex-auto flex flex-col gap-1">
+          <h1 class="text-sm font-bold">Region</h1>
+          <p class="text-sm"> {{ country.region }}</p>
+        </div>
+
+        <div class="w-full sm:w-1/4 flex-none flex flex-col gap-1">
+          <h1 class="text-sm font-bold">Subregion</h1>
+          <p class="text-sm"> {{ country.subregion }}</p>
+        </div>
+      </div>
+
+      <mat-divider class="border-t-gray-200"></mat-divider>
+
+      <div class="flex flex-col sm:flex-row items-center gap-2">
+        <div class="w-full sm:w-1/4 flex-none flex flex-col gap-1">
+          <h1 class="text-sm font-bold">Continent</h1>
+          <p> {{ country.continents.join(', ') }}</p>
+        </div>
+
+        <div class="w-full flex-auto flex flex-col gap-1">
+          <h1 class="text-sm font-bold">Borders</h1>
+          <p class="text-sm"> {{ country.borders ? country.borders.join(', ') : '--' }}</p>
+        </div>
+
+        <div class="w-full sm:w-1/4 flex-none flex flex-col gap-1">
+          <h1 class="text-sm font-bold">Time Zones</h1>
+          <p class="text-sm"> {{ country.timezones.join(', ') }}</p>
+        </div>
+      </div>
+
+      <mat-divider class="border-t-gray-200"></mat-divider>
+
+      <div class="flex flex-row items-center gap-2">
+        <div class="w-1/4 flex-none">
+          <h1 class="text-sm font-bold">Area</h1>
+        </div>
+
+        <div class="flex-auto">
+          <p class="text-sm"> {{ country.area | number }} square meter (m2)</p>
+        </div>
+      </div>
+
+      <mat-divider class="border-t-gray-200"></mat-divider>
+
+      <div class="flex flex-row items-center gap-2">
+        <div class="w-1/4 flex-none">
+          <h1 class="text-sm font-bold">Maps</h1>
+        </div>
+
+        <div class="flex-auto">
+          <p class="text-sm"> {{ country.maps.googleMaps }}</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</div>

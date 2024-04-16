@@ -1,0 +1,26 @@
+:host {
+  background: var(--toolbar-background);
+  box-sizing: border-box;
+  color: var(--toolbar-color);
+  display: block;
+  white-space: nowrap;
+  width: 100%;
+  z-index: var(--toolbar-z-index);
+  border-bottom: var(--toolbar-border-bottom);
+  border-radius: 12px 12px 0px 0px;
+}
+
+.toolbar {
+  width: 100%;
+  height: var(--toolbar-height);
+  padding: 24px 40px;
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  align-items: center;
+  gap: 16px;
+}
+
+.toolbar-icon {
+  color: var(--toolbar-icon-color);
+}

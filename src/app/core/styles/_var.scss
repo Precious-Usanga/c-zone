@@ -1,0 +1,33 @@
+// Custom Theming for Angular Material
+// For more information: https://material.angular.io/guide/theming
+@use '@angular/material' as mat;
+@import "partials/palette";
+// Plus imports for other components in your app.
+
+// Include the common styles for Angular Material. We include this here so that you only
+// have to load a single css file for Angular Material in your app.
+// Be sure that you only ever include this mixin once!
+$c-zone-typography: mat.define-typography-config($font-family: theme('fontFamily.sans'),
+  );
+
+// Define the palettes for your theme using the Material Design palettes available in palette.scss
+// (imported above). For each palette, you can optionally specify a default, lighter, and darker
+// hue. Available color palettes: https://material.io/design/color/
+$c-zone-primary: mat.define-palette($blue-palette, 600, 50, 800);
+$c-zone-accent: mat.define-palette($green-palette);
+$c-zone-white: mat.define-palette($white-palette, 700);
+
+// The warn palette is optional (defaults to red).
+$c-zone-warn: mat.define-palette($red-palette, 600);
+
+// Create the theme object. A theme consists of configurations for individual
+// theming systems such as "color" or "typography".
+$c-zone-theme: mat.define-light-theme((color: (primary: $c-zone-primary,
+        accent: $c-zone-accent,
+        warn: $c-zone-warn,
+      ),
+      typography: $c-zone-typography)) !default;
+
+$progress-spinner-theme: mat.define-light-theme((color: (primary: $c-zone-primary,
+        accent: $c-zone-white,
+        warn: $c-zone-warn )));

@@ -1,0 +1,17 @@
+<div class="flex h-screen w-full flex-col pb-8 xl:gap-16 bg-primary-50 overflow-y-auto">
+  <section id="auth-head" class="w-full">
+    <div class="flex w-full flex-row items-center justify-between px-3 py-8 xl:py-10 xl:px-10">
+      <div class="lg:px-4 xl:px-8">
+        <app-app-logo></app-app-logo>
+      </div>
+    </div>
+  </section>
+
+  <section id="auth-body" class="w-full">
+    <div class="w-full flex flex-row justify-center items-center px-4 lg:px-6 xl:px-10">
+      <div class="lg:px-4 w-full lg:w-auto flex flex-col">
+        <router-outlet></router-outlet>
+      </div>
+    </div>
+  </section>
+</div>

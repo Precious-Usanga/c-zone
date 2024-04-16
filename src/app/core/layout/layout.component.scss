@@ -1,0 +1,67 @@
+.page-container {
+  bottom: 0;
+  display: flex;
+  flex-direction: column;
+  left: 0;
+  position: absolute;
+  right: 0;
+  top: 0;
+}
+
+.sidenav {
+  background: var(--sidenav-background);
+  margin: 0px 0px 12px 0px;
+  border-right-color: none;
+  border-right-width: 0px;
+  border-right-style: none;
+}
+
+.content {
+  background: var(--background-base);
+  height: calc(100% - var(--toolbar-height));
+  position: relative;
+  width: 100%;
+}
+
+.scroll-disabled {
+  overflow: hidden;
+
+  .content {
+    overflow: hidden;
+  }
+}
+
+.is-mobile {
+  ::ng-deep .app-toolbar {
+    position: fixed;
+    width: 100%;
+  }
+
+  .content {
+    margin-top: var(--toolbar-height);
+  }
+}
+
+.sidenav-container {
+  background: var(--sidenav-background);
+  height: 100%;
+  transition: transform 0.5s cubic-bezier(0.2, 1, 0.3, 1);
+}
+
+.sidenav-content {
+  overflow-x: hidden;
+  overflow-y: auto;
+  background-color: var(--sidenav-background);
+}
+
+.toolbar-fixed {
+  ::ng-deep .app-toolbar {
+    position: fixed;
+    width: var(--toolbar-width);
+    z-index: 50;
+  }
+
+  .content {
+    margin-top: var(--toolbar-height);
+  }
+}

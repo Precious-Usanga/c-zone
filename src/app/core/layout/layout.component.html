@@ -1,0 +1,25 @@
+<div class="w-full m-0 page-container">
+  <mat-sidenav-container class="sidenav-container">
+    <mat-sidenav
+      #sidenav
+      [disableClose]="isDesktop$ | async"
+      [fixedInViewport]="(isDesktop$ | async) === false"
+      [mode]="(isDesktop$ | async) === false ? 'over' : 'side'"
+      [opened]="isDesktop$ | async"
+      class="sidenav"
+    >
+      <app-sidenav></app-sidenav>
+    </mat-sidenav>
+
+    <mat-sidenav-content class="sidenav-content">
+      <div
+        class="lg:m-3 xl:ml-0 lg:rounded-xl lg:border-solid lg:border lg:border-gray-200 h-screen sm:h-[97vh] overflow-clip"
+      >
+        <app-toolbar class="app-toolbar" [mobileQuery]="(isDesktop$ | async) === false"></app-toolbar>
+        <main class="content p-4 sm:px-10 sm:py-8 overflow-scroll">
+          <router-outlet></router-outlet>
+        </main>
+      </div>
+    </mat-sidenav-content>
+  </mat-sidenav-container>
+</div>

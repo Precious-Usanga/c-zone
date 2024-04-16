@@ -1,0 +1,44 @@
+@use "@angular/material" as mat;
+
+// @formatter:off
+:root {
+
+  // Background
+  $background: theme('colors.white');
+
+  --background-base: #{$background};
+
+  // Sidenav
+  $sidenav-background: theme('colors.gray.50');
+
+  --sidenav-width: 240px;
+  --sidenav-collapsed-width: 72px;
+  --sidenav-background: #{$sidenav-background};
+  --sidenav-color: theme(colors.gray.500);
+
+  // Sidenav Item
+  --sidenav-item-padding: var(--padding);
+  --sidenav-toolbar-background: #{$sidenav-background};
+  --sidenav-item-background-active: theme(colors.transparent);
+  --sidenav-item-background-hover: theme(colors.gray.100);
+  --sidenav-item-color: theme(colors.gray.500);
+  --sidenav-item-color-active: theme(colors.blue.600);
+  --sidenav-item-icon-color: theme(colors.gray.500);
+
+  --sidenav-item-icon-color-active: theme(colors.blue.600);
+  --sidenav-item-icon-gap: 16px;
+
+  // Toolbar
+  --toolbar-height: 92px;
+  --toolbar-background: #{$background};
+  --toolbar-color: theme(colors.gray.900);
+  --toolbar-icon-color: theme(colors.blue.600);
+  --toolbar-border-bottom: 1px solid theme(colors.gray.200);
+  --toolbar-z-index: 9999;
+
+  // Page Layouts
+  --page-layout-header-height: 200px;
+  --page-layout-toolbar-height: 64px;
+
+}
+  // @formatter:on

@@ -1,0 +1,10 @@
+<button
+  class="flex flex-row gap-1 items-center cursor-pointer focus:outline-none"
+  (click)="route ? navigateBackToRoute(route) : navigateBack()"
+  (keydown.enter)="route ? navigateBackToRoute(route) : navigateBack()"
+>
+  <mat-icon class="text-primary" [fontIcon]="CHEVRON_LEFT_ICON"></mat-icon>
+  @if (displayBackLabel) {
+    <span class="hover:pl-1 hover:transition-all hover:ease-out text-primary font-medium text-sm">Back</span>
+  }
+</button>

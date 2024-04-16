@@ -1,0 +1,24 @@
+<div class="w-full py-3 flex flex-row gap-6 items-center">
+  <div class="flex-auto flex flex-row gap-2 items-center">
+    <div class="flex-none">
+      <img [src]="PROFILE_AVATAR" alt="Default Profile Avatar" class="rounded-full w-10 h-10 select-none flex-none" />
+    </div>
+
+    <div class="flex-auto flex flex-col">
+      <div class="text-xs font-bold text-gray-900">
+        {{ userProfile?.fullname | titlecase }}
+      </div>
+
+      <p class="text-xs text-gray-600 cursor-pointer break-all">
+        {{ userProfile?.role | titlecase }}
+      </p>
+    </div>
+  </div>
+
+  <button mat-icon-button (click)="logOut()">
+    <mat-icon
+      [fontIcon]="logoutIcon"
+      class="cursor-pointer"
+    ></mat-icon>
+  </button>
+</div>

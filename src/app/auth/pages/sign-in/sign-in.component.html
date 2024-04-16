@@ -1,0 +1,76 @@
+<div
+  class="custom-card-shadow w-full lg:w-[448px] xl:w-[555px] flex flex-col gap-6 px-6 lg:px-10 xl:px-16 py-8 bg-white rounded-2xl"
+>
+  <div class="w-full flex flex-col">
+    <h1 class="text-2xl leading-8 font-bold text-[#1B1818] font-cabinet-grotesk">Hello, Zoner</h1>
+    <p class="text-gray-900 text-sm leading-7 font-medium">Enter your email and password to log in.</p>
+  </div>
+
+  <form class="w-full" [formGroup]="signInForm" (ngSubmit)="signInForm.valid && onSubmit(signInFormData)">
+    <div class="flex w-full flex-col gap-[13px]">
+      @if (apiError.status) {
+        <div class="w-full py-2.5">
+          <app-error-display [error]="apiError.message"></app-error-display>
+        </div>
+      }
+
+      <div class="flex w-full flex-col">
+        <mat-form-field>
+          <mat-label>Email</mat-label>
+          <mat-icon matPrefix [fontIcon]="mailIcon"></mat-icon>
+          <input type="email" [pattern]="REG_EXP.EMAIL" matInput formControlName="email"
+                placeholder="Enter Email address" required>
+        </mat-form-field>
+
+        @if (displayError(signInFormData.email)) {
+          @if (signInFormData.email.hasError('required')) {
+            <mat-error> Email is required </mat-error>
+          }
+
+          @if (signInFormData.email.hasError('pattern')) {
+            <mat-error> Enter valid email </mat-error>
+          }
+        }
+      </div>
+
+      <div class="flex w-full flex-col">
+        <mat-form-field>
+          <mat-label>Password</mat-label>
+          <mat-icon matPrefix [fontIcon]="passwordIcon"></mat-icon>
+          <input [type]="passwordInputType" matInput formControlName="password"
+                placeholder="••••••••" required>
+          <mat-icon (click)="togglePasswordInputVisibility(!passwordIsVisible)" matSuffix [fontIcon]="passwordIsVisible ? visibilityIcon : visibilityOffIcon"></mat-icon>
+        </mat-form-field>
+
+        @if (displayError(signInFormData.password)) {
+          @if (signInFormData.password.hasError('required')) {
+            <mat-error> Please enter your password </mat-error>
+          }
+        }
+      </div>
+
+      <div class="flex w-full flex-col">
+        <button
+          mat-flat-button
+          color="primary"
+          type="submit"
+          [disabled]="signInForm.invalid"
+        >
+          <div class="flex flex-row items-center justify-center gap-2">
+            <span>Log In to the Zone</span>
+            @if (isSigningIn) {
+              <mat-progress-spinner
+                color="accent"
+                mode="indeterminate"
+                diameter="20"
+                strokeWidth="3"
+              ></mat-progress-spinner>
+            }
+          </div>
+        </button>
+      </div>
+    </div>
+  </form>
+
+  <div></div>
+</div>

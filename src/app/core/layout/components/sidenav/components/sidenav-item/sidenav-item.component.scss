@@ -1,0 +1,44 @@
+.item {
+  align-items: center;
+  box-sizing: border-box;
+  color: var(--sidenav-item-color);
+  cursor: pointer;
+  display: flex;
+  flex-direction: row;
+  height: 40px;
+  padding: 14px 12px;
+  position: relative;
+  text-decoration: none;
+  user-select: none;
+  width: 100%;
+  font-weight: 500;
+
+  &:hover {
+    background: var(--sidenav-item-background-hover);
+    border-radius: 8px;
+  }
+
+  &.active {
+    .item-icon {
+      color: var(--sidenav-item-icon-color-active);
+    }
+
+    .item-label {
+      color: var(--sidenav-item-color-active);
+    }
+  }
+}
+
+.item-icon {
+  margin-inline-end: var(--sidenav-item-icon-gap);
+  color: var(--sidenav-item-icon-color);
+}
+
+
+.item-label {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  font-weight: 500;
+  font-size: 14px;
+}

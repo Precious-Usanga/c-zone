@@ -1,0 +1,25 @@
+<div class="toolbar">
+  @if (activeRouteData.toolbar.displayTitle) {
+    <h4 class="text-xl font-bold">
+      {{ activeRouteData.title | titlecase }}
+    </h4>
+  } @else {
+    <app-go-back [route]="activeRouteData.toolbar.goBackRoute"></app-go-back>
+  }
+
+  <div class="flex-auto"></div>
+
+  @if(mobileQuery) {
+    <mat-icon
+      (click)="openSidenav()"
+      class="cursor-pointer toolbar-icon"
+      [fontIcon]="menuIcon"
+    ></mat-icon>
+  }
+
+</div>
+
+@if (isNavigating) {
+  <mat-progress-bar color="primary" mode="indeterminate"></mat-progress-bar>
+}
+

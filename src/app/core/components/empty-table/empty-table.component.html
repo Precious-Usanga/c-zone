@@ -1,0 +1,28 @@
+<div class="flex h-[405px] w-full flex-col items-center justify-center gap-8">
+  @if (isSearch.status) {
+    <ng-template [ngTemplateOutlet]="isSearchQuery" [ngTemplateOutletContext]="{ $implicit: isSearch }"></ng-template>
+  } @else {
+    <ng-template
+      [ngTemplateOutlet]="isEmptyState"
+      [ngTemplateOutletContext]="{ $implicit: tableEmptyState }"
+    ></ng-template>
+  }
+</div>
+
+<ng-template #isSearchQuery let-search>
+  <img [src]="NO_SEARCH_RESULT_ILLUSTRATION" alt="No search result" />
+
+  <div class="w-[317px] whitespace-normal text-center text-base font-medium text-gray-600">
+    No search result found for "{{ search?.query }}"
+  </div>
+</ng-template>
+
+<ng-template #isEmptyState let-emptyTable>
+  <img [src]="emptyTable.illustration" alt="Empty Table Illustration" />
+
+  <div
+    class="w-[317px] whitespace-normal text-center text-base font-medium text-gray-600"
+  >
+    {{ emptyTable?.message }}
+  </div>
+</ng-template>
