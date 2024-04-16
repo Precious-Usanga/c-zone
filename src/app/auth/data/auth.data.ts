@@ -1,5 +1,6 @@
-import { Roles } from "../../core/enum/role";
-import { IUser } from "../models/auth.model";
+import { IUser } from "@auth/models/auth.model";
+import { Roles } from "@core/enum/role";
+
 
 export const USERS: IUser[] = [
   {

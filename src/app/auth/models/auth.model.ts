@@ -1,4 +1,5 @@
-import { Roles } from "../../core/enum/role";
+import { Roles } from "@core/enum/role";
+
 
 export interface ISignInPayload {
   email: string;

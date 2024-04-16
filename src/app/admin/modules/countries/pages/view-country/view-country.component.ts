@@ -1,9 +1,10 @@
-import { Component } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
-import { ICountry } from '../../models/countries.model';
-import { SharedModule } from '../../../../../core/shared/shared.module';
-import { MaterialModule } from '../../../../../core/shared/material.module';
-import { Roles } from '../../../../../core/enum/role';
+import { Component } from "@angular/core";
+import { ActivatedRoute } from "@angular/router";
+import { Roles } from "@core/enum/role";
+import { MaterialModule } from "@core/shared/material.module";
+import { SharedModule } from "@core/shared/shared.module";
+import { ICountry } from "../../models/countries.model";
+
 
 @Component({
   selector: 'app-view-country',

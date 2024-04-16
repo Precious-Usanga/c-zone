@@ -6,8 +6,8 @@ import {
   MatSnackBarLabel,
   MatSnackBarRef
 } from '@angular/material/snack-bar';
-import { MaterialModule } from '../../shared/material.module';
 import { SharedModule } from '../../shared/shared.module';
+import { MaterialModule } from '@core/shared/material.module';
 
 export interface ISnackBarData {
   message: string;

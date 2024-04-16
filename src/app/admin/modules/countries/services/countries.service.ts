@@ -1,8 +1,9 @@
-import { HttpClient } from '@angular/common/http';
-import { Injectable } from '@angular/core';
-import { Observable, map } from 'rxjs';
-import { Endpoint } from '../../../../core/shared/endpoints';
-import { ICountriesAPiQuery, ICountry } from '../models/countries.model';
+import { HttpClient } from "@angular/common/http"
+import { Injectable } from "@angular/core"
+import { Endpoint } from "@core/shared/endpoints"
+import { Observable, map } from "rxjs"
+import { ICountriesAPiQuery, ICountry } from "../models/countries.model"
+
 
 @Injectable({
   providedIn: 'root'

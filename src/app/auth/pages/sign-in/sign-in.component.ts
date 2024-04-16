@@ -1,21 +1,22 @@
-import { Component, DestroyRef, OnInit, inject } from '@angular/core';
-import { FormGroup, FormBuilder, Validators } from '@angular/forms';
-import { Router } from '@angular/router';
-import { APP_BASE_ROUTES_DEFINITION } from '../../../app.routes';
-import { StorageService } from '../../../core/services/storage.service';
-import { UserProfileService } from '../../../core/services/user-profile.service';
-import { Constants } from '../../../core/shared/constants';
-import { DisplayErrorMessage } from '../../../core/utilities/input-validation';
-import { REG_EXP } from '../../../core/utilities/reg-exp';
-import { AUTH_ROUTES_DEFINITION } from '../../auth.routes';
-import { ISignInForm } from '../../models/auth-form.model';
-import { ILoggedInResponse, ISignInPayload } from '../../models/auth.model';
-import { SharedModule } from '../../../core/shared/shared.module';
-import { MaterialModule } from '../../../core/shared/material.module';
-import { AuthService } from '../../services/auth.service';
-import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
-import { ErrorDisplayComponent } from '../../../core/components/error-display/error-display.component';
-import { SnackBarService } from '../../../core/services/snack-bar.service';
+import { Component, OnInit, inject, DestroyRef } from "@angular/core";
+import { takeUntilDestroyed } from "@angular/core/rxjs-interop";
+import { FormGroup, FormBuilder, Validators } from "@angular/forms";
+import { Router } from "@angular/router";
+import { AUTH_ROUTES_DEFINITION } from "@auth/auth.routes";
+import { ISignInForm } from "@auth/models/auth-form.model";
+import { ISignInPayload, ILoggedInResponse } from "@auth/models/auth.model";
+import { AuthService } from "@auth/services/auth.service";
+import { ErrorDisplayComponent } from "@core/components/error-display/error-display.component";
+import { SnackBarService } from "@core/services/snack-bar.service";
+import { StorageService } from "@core/services/storage.service";
+import { UserProfileService } from "@core/services/user-profile.service";
+import { Constants } from "@core/shared/constants";
+import { MaterialModule } from "@core/shared/material.module";
+import { SharedModule } from "@core/shared/shared.module";
+import { DisplayErrorMessage } from "@core/utilities/input-validation";
+import { REG_EXP } from "@core/utilities/reg-exp";
+import { APP_BASE_ROUTES_DEFINITION } from "src/app/app.routes";
+
 
 @Component({
   selector: 'app-sign-in',

@@ -1,10 +1,10 @@
-import { HttpClient } from '@angular/common/http';
-import { Injectable } from '@angular/core';
-import { Observable, catchError, delay, from, map, of, throwError } from 'rxjs';
-import { StorageService } from '../../core/services/storage.service';
-import { Constants } from '../../core/shared/constants';
-import { USERS } from '../data/auth.data';
-import { ILoggedInResponse, ISignInPayload } from '../models/auth.model';
+import { Injectable } from "@angular/core";
+import { USERS } from "@auth/data/auth.data";
+import { ISignInPayload, ILoggedInResponse } from "@auth/models/auth.model";
+import { StorageService } from "@core/services/storage.service";
+import { Constants } from "@core/shared/constants";
+import { Observable, of, delay, map, catchError, throwError } from "rxjs";
+
 
 @Injectable({
   providedIn: 'root'

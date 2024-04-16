@@ -1,12 +1,9 @@
 import { Component, Input } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { NavigationEnd, Router, RouterModule } from '@angular/router';
+import { RouterModule } from '@angular/router';
 import { MatIconModule } from '@angular/material/icon';
-
-import { Observable, filter, map, startWith } from 'rxjs';
-import { NavigationItem } from '../../../../../interfaces/navigation-item.interface';
-import { IUser } from '../../../../../../auth/models/auth.model';
-import { UserProfileService } from '../../../../../services/user-profile.service';
+import { IUser } from '@auth/models/auth.model';
+import { NavigationItem } from '@core/interfaces/navigation-item.interface';
 
 @Component({
   selector: 'app-sidenav-item',

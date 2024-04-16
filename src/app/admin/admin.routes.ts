@@ -1,6 +1,7 @@
+import { AppRoutes } from '@core/interfaces/app-route.interface';
 import { APP_BASE_ROUTES_DEFINITION } from '../app.routes';
 import { AdminComponent } from './admin.component';
-import { AppRoutes } from '../core/interfaces/app-route.interface';
+
 
 const ADMIN_BASE = APP_BASE_ROUTES_DEFINITION.ADMIN;
 

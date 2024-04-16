@@ -1,18 +1,19 @@
-import { Component, DestroyRef, OnInit, ViewChild, inject } from '@angular/core';
-import { COUNTRIES_ROUTES_DEFINITION } from '../../countries.routes';
-import { ICountriesAPiQuery, ICountriesTableData, ICountry } from '../../models/countries.model';
-import { CountriesService } from '../../services/countries.service';
-import { Observable, tap } from 'rxjs';
-import { MatTableDataSource } from '@angular/material/table';
-import { COUNTRIES_DISPLAYED_COLUMNS, CountriesActionEnum, countriesTableEmptyState } from '../../data/countries.data';
-import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
-import { SharedModule } from '../../../../../core/shared/shared.module';
-import { MaterialModule } from '../../../../../core/shared/material.module';
-import { EmptyTableComponent } from '../../../../../core/components/empty-table/empty-table.component';
-import { Router } from '@angular/router';
-import { Roles } from '../../../../../core/enum/role';
-import { Constants } from '../../../../../core/shared/constants';
-import { MatPaginator } from '@angular/material/paginator';
+import { Component, OnInit, inject, DestroyRef, ViewChild } from "@angular/core";
+import { takeUntilDestroyed } from "@angular/core/rxjs-interop";
+import { MatPaginator } from "@angular/material/paginator";
+import { MatTableDataSource } from "@angular/material/table";
+import { Router } from "@angular/router";
+import { EmptyTableComponent } from "@core/components/empty-table/empty-table.component";
+import { Roles } from "@core/enum/role";
+import { Constants } from "@core/shared/constants";
+import { MaterialModule } from "@core/shared/material.module";
+import { SharedModule } from "@core/shared/shared.module";
+import { Observable, tap } from "rxjs";
+import { COUNTRIES_ROUTES_DEFINITION } from "../../countries.routes";
+import { COUNTRIES_DISPLAYED_COLUMNS, CountriesActionEnum, countriesTableEmptyState } from "../../data/countries.data";
+import { ICountry, ICountriesAPiQuery, ICountriesTableData } from "../../models/countries.model";
+import { CountriesService } from "../../services/countries.service";
+
 
 @Component({
   selector: 'app-all-countries',

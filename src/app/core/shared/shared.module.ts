@@ -2,15 +2,15 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
-import { AppLogoComponent } from '../components/app-logo/app-logo.component';
-import { AllowedRolesDirective } from '../directives/allowed-roles/allowed-roles.directive';
+import { LogoComponent } from '@core/components/logo/logo.component';
+import { AllowedRolesDirective } from '@core/directives/allowed-roles/allowed-roles.directive';
 
 const modules = [
   CommonModule,
   RouterModule,
   FormsModule,
   ReactiveFormsModule,
-  AppLogoComponent,
+  LogoComponent,
   AllowedRolesDirective
 ];
 @NgModule({

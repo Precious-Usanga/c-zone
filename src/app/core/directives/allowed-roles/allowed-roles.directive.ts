@@ -1,6 +1,7 @@
 import { Directive, Input, TemplateRef, ViewContainerRef } from '@angular/core';
-import { UserProfileService } from '../../services/user-profile.service';
-import { Roles } from '../../enum/role';
+import { Roles } from '@core/enum/role';
+import { UserProfileService } from '@core/services/user-profile.service';
+
 
 @Directive({
   selector: '[appAllowedRoles]',

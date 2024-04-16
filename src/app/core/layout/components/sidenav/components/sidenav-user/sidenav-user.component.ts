@@ -3,11 +3,11 @@ import { Component, Input } from '@angular/core';
 import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
 import { Router, RouterModule } from '@angular/router';
-import { AuthService } from '../../../../../../auth/services/auth.service';
-import { AUTH_ROUTES_DEFINITION } from '../../../../../../auth/auth.routes';
-import { IUser } from '../../../../../../auth/models/auth.model';
-import { Assets } from '../../../../../shared/assets';
-import { SnackBarService } from '../../../../../services/snack-bar.service';
+import { AUTH_ROUTES_DEFINITION } from '@auth/auth.routes';
+import { IUser } from '@auth/models/auth.model';
+import { AuthService } from '@auth/services/auth.service';
+import { SnackBarService } from '@core/services/snack-bar.service';
+import { Assets } from '@core/shared/assets';
 
 
 @Component({

@@ -1,4 +1,5 @@
-import { Roles } from "../enum/role";
+import { Roles } from "@core/enum/role";
+
 
 export type NavigationItem = NavigationLink ;
 

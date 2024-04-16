@@ -1,7 +1,6 @@
 import { Route } from '@angular/router';
 
 export interface AppRouteData {
-  scrollDisabled?: boolean;
   title: string;
   toolbar: {
     displayTitle: boolean;

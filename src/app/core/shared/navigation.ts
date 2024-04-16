@@ -1,5 +1,6 @@
-import { Roles } from '../enum/role';
-import { NavigationItem } from '../interfaces/navigation-item.interface';
+import { Roles } from "@core/enum/role";
+import { NavigationItem } from "@core/interfaces/navigation-item.interface";
+
 
 export const NavigationList: NavigationItem[] = [
   {

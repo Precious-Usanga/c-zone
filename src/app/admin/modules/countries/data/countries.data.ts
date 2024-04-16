@@ -1,5 +1,6 @@
-import { ITableEmptyState } from "../../../../core/components/empty-table/models/empty-table.model";
-import { Assets } from "../../../../core/shared/assets";
+import { ITableEmptyState } from "@core/components/empty-table/models/empty-table.model";
+import { Assets } from "@core/shared/assets";
+
 
 
 
