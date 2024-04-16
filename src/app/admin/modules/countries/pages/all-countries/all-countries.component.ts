@@ -1,18 +1,15 @@
-import { Component, OnInit, inject, DestroyRef, ViewChild } from "@angular/core";
-import { takeUntilDestroyed } from "@angular/core/rxjs-interop";
+import { Component, OnInit, ViewChild } from "@angular/core";
 import { MatPaginator } from "@angular/material/paginator";
 import { MatTableDataSource } from "@angular/material/table";
-import { Router } from "@angular/router";
+import { ActivatedRoute, Router } from "@angular/router";
 import { EmptyTableComponent } from "@core/components/empty-table/empty-table.component";
 import { Roles } from "@core/enum/role";
 import { Constants } from "@core/shared/constants";
 import { MaterialModule } from "@core/shared/material.module";
 import { SharedModule } from "@core/shared/shared.module";
-import { Observable, tap } from "rxjs";
 import { COUNTRIES_ROUTES_DEFINITION } from "../../countries.routes";
 import { COUNTRIES_DISPLAYED_COLUMNS, CountriesActionEnum, countriesTableEmptyState } from "../../data/countries.data";
 import { ICountry, ICountriesAPiQuery, ICountriesTableData } from "../../models/countries.model";
-import { CountriesService } from "../../services/countries.service";
 
 
 @Component({
@@ -27,7 +24,7 @@ export class AllCountriesComponent implements OnInit {
   COUNTRIES_ROUTES = COUNTRIES_ROUTES_DEFINITION;
   MORE_ACTION_ICON = 'more_vert';
 
-  countries$!: Observable<ICountry[]>;
+  countries!: ICountry[];
 
   countriesApiQuery: ICountriesAPiQuery = {
     fields: ["name", "capital", "currencies", "region", "population", "cca2", "flags"]
@@ -41,29 +38,24 @@ export class AllCountriesComponent implements OnInit {
   countriesActions = CountriesActionEnum;
   countriesTableEmptyState = countriesTableEmptyState;
 
-  private destroyRef = inject(DestroyRef);
-
   @ViewChild(MatPaginator) paginator!: MatPaginator;
   PAGINATION = Constants.PAGINATION;
 
   constructor(
-    private countriesService: CountriesService,
-    private router: Router
+    private router: Router,
+    private route: ActivatedRoute
   ) { }
 
   ngOnInit(): void {
-    this.getCountries(this.countriesApiQuery);
+    this.getCountriesDataFromRoute();
   }
 
-  getCountries(queryParams?: ICountriesAPiQuery): void {
-    const params = queryParams ? { ...queryParams } : {};
-
-    this.countries$ = this.countriesService.getCountries(params).pipe(
-      tap((response) => {
-        this.populateCountriesTable(response);
-      }),
-      takeUntilDestroyed(this.destroyRef)
-    );
+  getCountriesDataFromRoute() {
+    this.route.data.subscribe((data) => {
+      const routeData = data as { countriesData: ICountry[] };
+      this.countries = routeData['countriesData'];
+      this.populateCountriesTable(this.countries);
+    });
   }
 
   populateCountriesTable(countries: ICountry[]): void {

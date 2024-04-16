@@ -7,8 +7,6 @@ import { Injectable } from '@angular/core';
 export class ApiCacheService {
   private apiCache = new Map<string, HttpResponse<unknown>>();
 
-  constructor() {}
-
   getApiCache(apiUrl: string) {
     return this.apiCache.get(apiUrl);
   }

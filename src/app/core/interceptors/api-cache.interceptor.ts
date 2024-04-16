@@ -18,7 +18,6 @@ export const apiCacheInterceptor: HttpInterceptorFn = (
   // check if the request is in the cache
   const cachedResponse = apiCacheService.getApiCache(request.url);
   if (cachedResponse) {
-    console.log('cached response', cachedResponse);
     // if the request is in the cache, return the cached response
     return of(cachedResponse);
   }

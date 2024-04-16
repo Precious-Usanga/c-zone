@@ -2,7 +2,7 @@ import { ADMIN_ROUTES_DEFINITION } from "@admin/admin.routes";
 import { AppRoutes } from "@core/interfaces/app-route.interface";
 import { AllCountriesComponent } from "./pages/all-countries/all-countries.component";
 import { ViewCountryComponent } from "./pages/view-country/view-country.component";
-import { viewCountryDataResolver } from "./resolvers/countries.resolver";
+import { countriesDataResolver, viewCountryDataResolver } from "./resolvers/countries.resolver";
 
 
 
@@ -22,6 +22,9 @@ export const COUNTRIES_ROUTES: AppRoutes = [
       toolbar: {
         displayTitle: true
       }
+    },
+    resolve: {
+      countriesData: countriesDataResolver
     }
   },
   {
