@@ -1,0 +1,51 @@
+<div class="h-16 flex flex-row justify-between gap-4 items-center">
+  <div
+    class="w-1/6 h-auto flex-none flex flex-col items-center justify-center"
+    [ngClass]="{
+      'text-green-500': data.type === 'success',
+      'text-red-500': data.type === 'error',
+      'text-yellow-500': data.type === 'warning',
+      'text-blue-500': data.type === 'info'
+    }"
+    >
+    @switch (data.type) {
+      @case('success') {
+        <mat-icon [fontIcon]="successIcon"></mat-icon>
+      }
+      @case('error') {
+        <mat-icon [fontIcon]="errorIcon"></mat-icon>
+      }
+      @case('warning') {
+        <mat-icon [fontIcon]="warningIcon"></mat-icon>
+      }
+      @case('info') {
+        <mat-icon [fontIcon]="infoIcon"></mat-icon>
+      }
+    }
+  </div>
+
+  <div class="w-full flex-auto">
+    <span matSnackBarLabel>
+      {{ data.message }}
+    </span>
+  </div>
+
+  @if(data.action) {
+    <div class="w-1/6 h-auto flex-none flex flex-col items-center justify-center">
+      <button
+        mat-button
+        class="cursor-pointer"
+        [ngClass]="{
+          'text-green-500': data.type === 'success',
+          'text-red-500': data.type === 'error',
+          'text-yellow-500': data.type === 'warning',
+          'text-blue-500': data.type === 'info'
+        }"
+        matSnackBarAction
+        (click)="snackBarRef.dismissWithAction()"
+      >
+      {{ data.action }}
+    </button>
+    </div>
+  }
+</div>

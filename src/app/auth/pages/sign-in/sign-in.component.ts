@@ -15,6 +15,7 @@ import { MaterialModule } from '../../../core/shared/material.module';
 import { AuthService } from '../../services/auth.service';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import { ErrorDisplayComponent } from '../../../core/components/error-display/error-display.component';
+import { SnackBarService } from '../../../core/services/snack-bar.service';
 
 @Component({
   selector: 'app-sign-in',
@@ -54,7 +55,8 @@ export class SignInComponent implements OnInit {
     private authService: AuthService,
     private storageService: StorageService,
     private userProfileService: UserProfileService,
-    private router: Router
+    private router: Router,
+    private snackBarService: SnackBarService
   ) { }
 
   ngOnInit(): void {
@@ -90,10 +92,13 @@ export class SignInComponent implements OnInit {
       .pipe(takeUntilDestroyed(this.destroyRef))
       .subscribe({
         next: (response) => {
-          console.log('response', response);
           this.storeDetailsLocallyAndUpdateObservers(response);
           this.isSigningIn = false;
           this.goToAdmin();
+          this.snackBarService.openSnackBar({
+            message: 'Welcome Back, Zoner! You are signed in',
+            type: 'success'
+          })
         },
         error: (error) => {
           this.isSigningIn = false;

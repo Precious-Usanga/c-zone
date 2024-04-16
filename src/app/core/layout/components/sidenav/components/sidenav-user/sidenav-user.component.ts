@@ -7,6 +7,7 @@ import { AuthService } from '../../../../../../auth/services/auth.service';
 import { AUTH_ROUTES_DEFINITION } from '../../../../../../auth/auth.routes';
 import { IUser } from '../../../../../../auth/models/auth.model';
 import { Assets } from '../../../../../shared/assets';
+import { SnackBarService } from '../../../../../services/snack-bar.service';
 
 
 @Component({
@@ -26,11 +27,16 @@ export class SidenavUserComponent {
 
   constructor(
     private authService: AuthService,
-    private router: Router
+    private router: Router,
+    private snackBarService: SnackBarService
   ) {}
 
   logOut() {
     this.authService.clearUserSessionData();
     this.router.navigate([this.AUTH_ROUTES.SIGN_IN]);
+    this.snackBarService.openSnackBar({
+      message: `Goodbye Zoner! You're logged out!`,
+      type: 'info'
+    })
   }
 }
