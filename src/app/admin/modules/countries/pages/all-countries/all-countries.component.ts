@@ -1,4 +1,4 @@
-import { AfterViewInit, Component, DestroyRef, OnInit, ViewChild, inject } from '@angular/core';
+import { Component, DestroyRef, OnInit, ViewChild, inject } from '@angular/core';
 import { COUNTRIES_ROUTES_DEFINITION } from '../../countries.routes';
 import { ICountriesAPiQuery, ICountriesTableData, ICountry } from '../../models/countries.model';
 import { CountriesService } from '../../services/countries.service';
@@ -21,7 +21,7 @@ import { MatPaginator } from '@angular/material/paginator';
   templateUrl: './all-countries.component.html',
   styleUrl: './all-countries.component.scss'
 })
-export class AllCountriesComponent implements OnInit, AfterViewInit {
+export class AllCountriesComponent implements OnInit {
   ROLES = Roles;
   COUNTRIES_ROUTES = COUNTRIES_ROUTES_DEFINITION;
   MORE_ACTION_ICON = 'more_vert';
@@ -52,10 +52,6 @@ export class AllCountriesComponent implements OnInit, AfterViewInit {
 
   ngOnInit(): void {
     this.getCountries(this.countriesApiQuery);
-  }
-
-  ngAfterViewInit() {
-    this.countriesTableDataSource.paginator = this.paginator;
   }
 
   getCountries(queryParams?: ICountriesAPiQuery): void {
