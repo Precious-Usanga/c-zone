@@ -1,12 +1,14 @@
 import { HttpEvent, HttpHandlerFn, HttpInterceptorFn, HttpRequest, HttpResponse } from '@angular/common/http';
-import { Observable } from 'rxjs';
+import { inject } from '@angular/core';
+import { ApiCacheService } from '@core/services/api-cache.service';
+import { Observable, of, tap } from 'rxjs';
 
 export const apiCacheInterceptor: HttpInterceptorFn = (
   request: HttpRequest<unknown>,
   next: HttpHandlerFn
 ): Observable<HttpEvent<unknown>> => {
-  // cache to store the response
-  const cache = new Map<string, HttpResponse<unknown>>();
+  // inject the ApiCacheService
+  const apiCacheService = inject(ApiCacheService);
 
   // check if the request is a GET request
   if (request.method !== 'GET') {
@@ -14,21 +16,19 @@ export const apiCacheInterceptor: HttpInterceptorFn = (
   }
 
   // check if the request is in the cache
-  const cachedResponse = cache.get(request.urlWithParams);
+  const cachedResponse = apiCacheService.getApiCache(request.url);
   if (cachedResponse) {
-    return new Observable<HttpEvent<unknown>>((observer) => {
-      observer.next(cachedResponse);
-      observer.complete();
-    });
+    console.log('cached response', cachedResponse);
+    // if the request is in the cache, return the cached response
+    return of(cachedResponse);
   }
 
   // if the request is not in the cache, make the request and store the response in the cache
-  const req = next(request).pipe((response) => {
-    if (response instanceof HttpResponse) {
-      cache.set(request.urlWithParams, response);
-    }
-    return response;
-  });
-  // return the request
-  return req;
+  return next(request).pipe(
+    tap((response) => {
+      if (response instanceof HttpResponse) {
+        apiCacheService.setApiCache(request.url, response);
+      }
+    })
+  );
 };
