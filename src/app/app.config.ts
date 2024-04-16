@@ -8,7 +8,7 @@ import { ErrorStateMatcher } from '@angular/material/core';
 import { MyErrorStateMatcher } from './core/utilities/input-validation';
 import { errorInterceptor } from './core/interceptors/error.interceptor';
 
-export const appConfig: ApplicationConfig = {
+export const AppConfig: ApplicationConfig = {
   providers: [
     provideRouter(routes),
     provideAnimationsAsync(),
