@@ -12,11 +12,10 @@ import { Constants } from "@core/shared/constants"
 })
 export class CountriesService {
 
-  private countriesCache = this.storageService.get<string>(Constants.STORAGE_VARIABLES.COUNTRIES);
-
-  private getCountriesCache = (countriesData: string | null): ICountry[] | null => {
-    if (countriesData) {
-      return <ICountry[]>JSON.parse(countriesData);
+  private get countriesCache(): ICountry[] | null {
+    const countriesCache = this.storageService.get<string>(Constants.STORAGE_VARIABLES.COUNTRIES);
+    if (countriesCache) {
+      return <ICountry[]>JSON.parse(countriesCache);
     }
     return null;
   }
@@ -34,7 +33,7 @@ export class CountriesService {
   }
 
   getCountries(query?: ICountriesAPiQuery): Observable<ICountry[]> {
-    const cachedCountries = this.getCountriesCache(this.countriesCache);
+    const cachedCountries = this.countriesCache;
 
     if (cachedCountries) {
       return of(cachedCountries);
@@ -54,14 +53,14 @@ export class CountriesService {
   }
 
   deleteCountry(countryToBeDeleted: ICountry): Observable<{message: string}> {
-    const cachedCountries = this.getCountriesCache(this.countriesCache);
-    if (cachedCountries) {
+    const cachedCountries = this.countriesCache;
+    if (cachedCountries?.length) {
       const countryIndex = cachedCountries.findIndex((country) => {
         return country.name.common === countryToBeDeleted.name.common &&
           country.cca2 === countryToBeDeleted.cca2
       });
       if (countryIndex !== -1) {
-        const a = cachedCountries.splice(countryIndex, 1);
+        cachedCountries.splice(countryIndex, 1);
         this.updateCachedCountriesDataSource(cachedCountries);
         return of({ message: 'Country Deleted Successfully' });
       } else {

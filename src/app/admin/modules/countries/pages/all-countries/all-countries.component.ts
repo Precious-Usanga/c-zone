@@ -44,7 +44,6 @@ export class AllCountriesComponent implements OnInit, AfterViewInit {
   countriesTableEmptyState = countriesTableEmptyState;
 
   @ViewChild(MatPaginator) paginator!: MatPaginator;
-  @ViewChild(MatTable) countriesTable!: MatTable<ICountriesTableData>;
   PAGINATION = Constants.PAGINATION;
 
   callToActionModal = CallToActionModalComponent;
@@ -64,7 +63,6 @@ export class AllCountriesComponent implements OnInit, AfterViewInit {
 
   ngAfterViewInit(): void {
     this.countriesTableDataSource.paginator = this.paginator;
-
   }
 
   getCountriesDataFromRoute() {
@@ -89,7 +87,6 @@ export class AllCountriesComponent implements OnInit, AfterViewInit {
       };
     });
     this.countriesTableDataSource.data = this.COUNTRIES_TABLE_DATA;
-    this.countriesTable.renderRows();
   }
 
   getCurrencies(currencies: {[key: string]: {name: string; symbol: string}}): string {
@@ -138,7 +135,6 @@ export class AllCountriesComponent implements OnInit, AfterViewInit {
         const api_request: Observable<unknown> = this.callToActionApiRequest(data);
         api_request.pipe(takeUntilDestroyed(this.destroyRef)).subscribe({
           next: (response) => {
-            console.info(response);
             modal.componentInstance.callToActionLoading = false;
             modal.componentInstance.closeModal(
               {
@@ -187,7 +183,6 @@ export class AllCountriesComponent implements OnInit, AfterViewInit {
   getCountriesAndUpdateUI() {
     this.countriesService.getCountries().subscribe({
       next: (response) => {
-        console.info(response);
         this.countries = response;
         this.populateCountriesTable(this.countries);
       }
