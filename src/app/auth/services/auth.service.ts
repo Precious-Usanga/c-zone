@@ -1,6 +1,7 @@
 import { Injectable } from "@angular/core";
 import { USERS } from "@auth/data/auth.data";
 import { ISignInPayload, ILoggedInResponse } from "@auth/models/auth.model";
+import { ApiCacheService } from "@core/services/api-cache.service";
 import { StorageService } from "@core/services/storage.service";
 import { Constants } from "@core/shared/constants";
 import { Observable, of, delay, map, catchError, throwError } from "rxjs";
@@ -13,7 +14,8 @@ export class AuthService {
   hardcodedUsers = USERS;
 
   constructor(
-    private storageService: StorageService
+    private storageService: StorageService,
+    private apiCacheService: ApiCacheService
   ) {}
 
   getAccessToken(): string {
@@ -26,6 +28,7 @@ export class AuthService {
 
   clearUserSessionData() {
     this.storageService.clear_all();
+    this.apiCacheService.clearApiCache();
   }
 
   signIn(payload: ISignInPayload): Observable<ILoggedInResponse> {
