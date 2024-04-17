@@ -5,7 +5,7 @@ This project was generated with [Angular CLI](https://github.com/angular/angular
 ## About the Application
 
 CZone is a simple web application built with angular to demonstrate proficiency with core angular concepts like component-based architecture, directives, content projection, services, routing, forms, validation, dependency injection, as well as frontend application performance, accessibility, and security. 
-CZone features authentication, role management, API integration, UI responsivness etc. It includes a modules where authenticated users can access information about countries as well as performing update and delete actions with the countries data.
+CZone features authentication, role management, API integration, UI responsiveness, and more. It includes a module where authenticated users can access information about countries, perform updates, and delete actions based on the country's data.
 
 ## Login
 
@@ -24,21 +24,17 @@ Each Login has a corresponding *ROLE* i.e ROLE = `"admin"` | `"operator"`
 
 To get a local copy up and running, follow these steps:
 
-1. Clone the repository.
-```bash
-git clone https://github.com/Precious-Usanga/c-zone.git
+1. Clone the repository - 
+`git clone https://github.com/Precious-Usanga/c-zone.git`
 
-2. Navigate to the project directory.
-```bash
-cd c-zone
+2. Navigate to the project directory - 
+`cd c-zone`
 
-3. Install dependencies.
-```bash
-npm install
+3. Install dependencies - 
+`npm install`
 
-4. Start the development server
-```bash
-ng serve
+4. Start the development server - 
+`ng serve`
 
 Navigate to http://localhost:4200/. The application will automatically reload if you change any of the source files.
 
@@ -47,7 +43,7 @@ Navigate to http://localhost:4200/. The application will automatically reload if
 
 Angular: Angular is a platform and framework for building single-page client applications using HTML and TypeScript
 Angular Material: UI component infrastructure and Material Design components for mobile and desktop Angular web applications.
-TailwindCss: Tailwind CSS is a utility-first CSS framework for rapidly building pixel-perfect websites.
+Tailwind CSS: Tailwind CSS is a utility-first CSS framework for rapidly building pixel-perfect websites.
 
 ## Contributing
 
@@ -83,9 +79,10 @@ Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To u
 
 ## Further help
 
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
+To get more help on the Angular CLI, use `ng help` or check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
 
 
 ## Owner:
 Precious Usanga
+
 Feel free to contribute to the project by adding new features, fixing bugs, or improving the codebase!
