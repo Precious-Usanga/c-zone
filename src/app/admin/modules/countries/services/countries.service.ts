@@ -5,6 +5,7 @@ import { Observable, map, of, tap, throwError } from "rxjs"
 import { ICountriesAPiQuery, ICountry } from "../models/countries.model"
 import { StorageService } from "@core/services/storage.service"
 import { Constants } from "@core/shared/constants"
+import { SnackBarService } from "@core/services/snack-bar.service"
 
 
 @Injectable({
@@ -22,7 +23,8 @@ export class CountriesService {
 
   constructor(
     private http: HttpClient,
-    private storageService: StorageService
+    private storageService: StorageService,
+    private snackBarService: SnackBarService
   ) { }
 
   updateCachedCountriesDataSource(countries: ICountry[]) {
@@ -62,7 +64,10 @@ export class CountriesService {
       if (countryIndex !== -1) {
         cachedCountries.splice(countryIndex, 1);
         this.updateCachedCountriesDataSource(cachedCountries);
-        return of({ message: 'Country Deleted Successfully' });
+
+        const message = "Country Deleted Successfully"
+        this.snackBarService.openSnackBar({ message, type: 'success'})
+        return of({ message });
       } else {
         return throwError(() => new Error('Country does not exist'))
       }

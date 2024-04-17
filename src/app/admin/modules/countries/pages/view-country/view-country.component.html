@@ -20,6 +20,11 @@
       mat-flat-button
       color="warn"
       *appAllowedRoles="[ROLES.ADMIN]"
+      (click)="openDialog({
+        action: countriesActions.DELETE,
+        modal: callToActionModal,
+        extraData: country
+      })"
     >
       <mat-icon [fontIcon]="deleteIcon"></mat-icon>
       Delete Country

@@ -1,6 +1,6 @@
 import { AfterViewInit, Component, DestroyRef, OnInit, ViewChild, inject } from "@angular/core";
 import { MatPaginator } from "@angular/material/paginator";
-import { MatTable, MatTableDataSource } from "@angular/material/table";
+import { MatTableDataSource } from "@angular/material/table";
 import { ActivatedRoute, Router } from "@angular/router";
 import { EmptyTableComponent } from "@core/components/empty-table/empty-table.component";
 import { Roles } from "@core/enum/role";
