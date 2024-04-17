@@ -1,7 +1,7 @@
 import { HttpClient } from "@angular/common/http"
 import { Injectable } from "@angular/core"
 import { Endpoint } from "@core/shared/endpoints"
-import { Observable, map, of, tap } from "rxjs"
+import { Observable, map, of, tap, throwError } from "rxjs"
 import { ICountriesAPiQuery, ICountry } from "../models/countries.model"
 import { StorageService } from "@core/services/storage.service"
 import { Constants } from "@core/shared/constants"
@@ -51,5 +51,24 @@ export class CountriesService {
     return this.http.get<ICountry[]>(`${Endpoint.COUNTRIES.get_a_country(countryIsoCode)}`).pipe(
       map((response) => response['0'])
     )
+  }
+
+  deleteCountry(countryToBeDeleted: ICountry): Observable<{message: string}> {
+    const cachedCountries = this.getCountriesCache(this.countriesCache);
+    if (cachedCountries) {
+      const countryIndex = cachedCountries.findIndex((country) => {
+        return country.name.common === countryToBeDeleted.name.common &&
+          country.cca2 === countryToBeDeleted.cca2
+      });
+      if (countryIndex !== -1) {
+        const a = cachedCountries.splice(countryIndex, 1);
+        this.updateCachedCountriesDataSource(cachedCountries);
+        return of({ message: 'Country Deleted Successfully' });
+      } else {
+        return throwError(() => new Error('Country does not exist'))
+      }
+    } else {
+      return throwError(() => new Error('Countries not found'))
+    }
   }
 }

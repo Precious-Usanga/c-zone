@@ -1,0 +1,85 @@
+@if (callToActionModalData) {
+  <div class="flex flex-col w-full gap-8 py-6">
+    <div class="flex flex-col w-full gap-4 px-6">
+      <div class="flex flex-row items-center justify-between w-full gap-4">
+        <div
+          class="p-2.5 flex flex-col items-center justify-center rounded-full border-6 border-solid"
+          [ngClass]="{
+            primary: callToActionModalData.theme_color === 'primary',
+            error: callToActionModalData.theme_color === 'error'
+          }"
+        >
+          <mat-icon
+            [ngClass]="{
+              'text-blue-600': callToActionModalData.theme_color === 'primary',
+              'text-red-500': callToActionModalData.theme_color === 'error'
+            }"
+            [fontIcon]="callToActionModalData.icon"
+          ></mat-icon>
+        </div>
+
+        <ng-container *ngTemplateOutlet="closeIconTemp"></ng-container>
+      </div>
+
+      <div class="flex flex-col w-full gap-1 pl-2 pr-4">
+        <div class="flex flex-row items-center w-full">
+          <h4 class="text-lg font-bold text-gray-900">{{ callToActionModalData.title }}</h4>
+        </div>
+
+        <div class="flex flex-row w-full">
+          <p class="text-base text-gray-600">{{ callToActionModalData.question }}</p>
+        </div>
+      </div>
+    </div>
+
+    <mat-divider class="border-t-gray-200"></mat-divider>
+
+    <div class="w-full flex flex-col gap-4 px-6">
+      @if (CALL_TO_ACTION_ERROR_RESPONSE.status) {
+        <div class="w-full">
+          <app-error-display [error]="CALL_TO_ACTION_ERROR_RESPONSE.message"></app-error-display>
+        </div>
+      }
+
+      <div class="flex flex-row items-center justify-end w-full gap-3">
+        @if (callToActionLoading) {
+          <mat-progress-spinner
+            color="primary"
+            mode="indeterminate"
+            diameter="20"
+            strokeWidth="3"
+          ></mat-progress-spinner>
+        } @else {
+          <button type="button" mat-stroked-button (click)="closeModal()">
+            {{ callToActionModalData.cancel_button_text | titlecase }}
+          </button>
+
+          <button
+            type="button"
+            mat-flat-button
+            [color]="setSubmitButtonColor(callToActionModalData.theme_color)"
+            (click)="submitDialogAction(data)"
+            class="rounded-xl"
+          >
+            <div class="flex flex-row items-center gap-2">
+              <span class="font-bold">{{ callToActionModalData.action_button_text | titlecase }}</span>
+            </div>
+          </button>
+        }
+      </div>
+    </div>
+  </div>
+} @else {
+  <div class="flex flex-col w-full h-full gap-2 px-6">
+    <div class="flex flex-row items-center justify-end flex-none w-full">
+      <ng-container *ngTemplateOutlet="closeIconTemp"></ng-container>
+    </div>
+    <div class="flex flex-col items-center justify-center flex-auto w-full">
+      <p class="text-lg font-medium">Call to action modal data is not available</p>
+    </div>
+  </div>
+}
+
+<ng-template #closeIconTemp>
+  <mat-icon mat-dialog-close class="cursor-pointer text-gray-500" [fontIcon]="closeIcon"></mat-icon>
+</ng-template>

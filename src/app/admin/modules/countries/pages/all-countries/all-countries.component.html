@@ -1,116 +1,118 @@
 <div class="w-full flex flex-col gap-10">
-  @if (countries) {
-    <div class="w-full flex flex-col gap-4 overflow-auto">
-      <table
-        aria-label="System Users List Table"
-        mat-table
-        [dataSource]="countriesTableDataSource"
-        class="w-full whitespace-nowrap"
-      >
-        <ng-container matColumnDef="flag">
-          <th *matHeaderCellDef mat-header-cell class="text-center">Flag</th>
-          <td *matCellDef="let element" class="min-w-8" mat-cell>
-            <img class="h-auto" width="78px" [src]="element.flag" [alt]="element.action.flags.alt">
-          </td>
-        </ng-container>
+  <div class="w-full flex flex-col gap-4 overflow-auto">
+    <table
+      aria-label="Countries List Table"
+      mat-table
+      #countriesTable
+      [dataSource]="countriesTableDataSource"
+      class="w-full whitespace-nowrap"
+    >
+      <ng-container matColumnDef="flag">
+        <th *matHeaderCellDef mat-header-cell class="text-center">Flag</th>
+        <td *matCellDef="let element" class="min-w-8" mat-cell>
+          <img class="h-auto" width="78px" [src]="element.flag" [alt]="element.action.flags.alt">
+        </td>
+      </ng-container>
 
-        <ng-container matColumnDef="commonName">
-          <th *matHeaderCellDef mat-header-cell>Name</th>
-          <td *matCellDef="let element" class="min-w-8" mat-cell>{{ element.commonName | titlecase }}</td>
-        </ng-container>
+      <ng-container matColumnDef="commonName">
+        <th *matHeaderCellDef mat-header-cell>Name</th>
+        <td *matCellDef="let element" class="min-w-8" mat-cell>{{ element.commonName | titlecase }}</td>
+      </ng-container>
 
-        <ng-container matColumnDef="officialName">
-          <th *matHeaderCellDef mat-header-cell>Official Name</th>
-          <td *matCellDef="let element" class="min-w-8" mat-cell>{{ element.officialName| titlecase }}</td>
-        </ng-container>
+      <ng-container matColumnDef="officialName">
+        <th *matHeaderCellDef mat-header-cell>Official Name</th>
+        <td *matCellDef="let element" class="min-w-8" mat-cell>{{ element.officialName| titlecase }}</td>
+      </ng-container>
 
-        <ng-container matColumnDef="capital">
-          <th *matHeaderCellDef mat-header-cell>Capital</th>
-          <td *matCellDef="let element" class="min-w-8" mat-cell>{{ element.capital | titlecase }}</td>
-        </ng-container>
+      <ng-container matColumnDef="capital">
+        <th *matHeaderCellDef mat-header-cell>Capital</th>
+        <td *matCellDef="let element" class="min-w-8" mat-cell>{{ element.capital | titlecase }}</td>
+      </ng-container>
 
-        <ng-container matColumnDef="currency">
-          <th *matHeaderCellDef mat-header-cell>Currency</th>
-          <td *matCellDef="let element" class="min-w-8" mat-cell>{{ element.currency }}</td>
-        </ng-container>
+      <ng-container matColumnDef="currency">
+        <th *matHeaderCellDef mat-header-cell>Currency</th>
+        <td *matCellDef="let element" class="min-w-8" mat-cell>{{ element.currency }}</td>
+      </ng-container>
 
-        <ng-container matColumnDef="population">
-          <th *matHeaderCellDef mat-header-cell>Population</th>
-          <td *matCellDef="let element" class="min-w-8" mat-cell>{{ element.population | number }}</td>
-        </ng-container>
+      <ng-container matColumnDef="population">
+        <th *matHeaderCellDef mat-header-cell>Population</th>
+        <td *matCellDef="let element" class="min-w-8" mat-cell>{{ element.population | number }}</td>
+      </ng-container>
 
-        <ng-container matColumnDef="region">
-          <th *matHeaderCellDef mat-header-cell>Region</th>
-          <td *matCellDef="let element" class="min-w-8" mat-cell>{{ element.region | titlecase }}</td>
-        </ng-container>
+      <ng-container matColumnDef="region">
+        <th *matHeaderCellDef mat-header-cell>Region</th>
+        <td *matCellDef="let element" class="min-w-8" mat-cell>{{ element.region | titlecase }}</td>
+      </ng-container>
 
-        <ng-container matColumnDef="action">
-          <th *matHeaderCellDef mat-header-cell></th>
-          <td *matCellDef="let element" class="min-w-8 text-center" mat-cell (click)="$event.stopPropagation()">
-            <button
-              mat-icon-button
-              [matMenuTriggerFor]="countriesActionMenu"
-            >
-              <mat-icon class="text-gray-400" [fontIcon]="MORE_ACTION_ICON"></mat-icon>
-            </button>
-            <mat-menu #countriesActionMenu="matMenu" xPosition="before">
-              <ng-template matMenuContent>
-                <button
-                  class="text-gray-600"
-                  mat-menu-item
-                  (click)="navigateToViewCountryPage(element.action)"
-                  *appAllowedRoles="[ROLES.ADMIN, ROLES.OPERATOR]"
-                >
-                  View Country
-                </button>
-                <button
-                  class="text-gray-600"
-                  mat-menu-item
-                  *appAllowedRoles="[ROLES.ADMIN]"
-                >
-                  Edit country
-                </button>
-                <button
-                  class="text-red-600"
-                  mat-menu-item
-                  *appAllowedRoles="[ROLES.ADMIN]"
-                >
-                  Delete country
-                </button>
-              </ng-template>
-            </mat-menu>
-          </td>
-        </ng-container>
+      <ng-container matColumnDef="action">
+        <th *matHeaderCellDef mat-header-cell></th>
+        <td *matCellDef="let element" class="min-w-8 text-center" mat-cell (click)="$event.stopPropagation()">
+          <button
+            mat-icon-button
+            [matMenuTriggerFor]="countriesActionMenu"
+          >
+            <mat-icon class="text-gray-400" [fontIcon]="MORE_ACTION_ICON"></mat-icon>
+          </button>
+          <mat-menu #countriesActionMenu="matMenu" xPosition="before">
+            <ng-template matMenuContent>
+              <button
+                class="text-gray-600"
+                mat-menu-item
+                (click)="navigateToViewCountryPage(element.action)"
+                *appAllowedRoles="[ROLES.ADMIN, ROLES.OPERATOR]"
+              >
+                View Country
+              </button>
+              <button
+                class="text-gray-600"
+                mat-menu-item
+                *appAllowedRoles="[ROLES.ADMIN]"
+              >
+                Edit country
+              </button>
+              <button
+                class="text-red-600"
+                mat-menu-item
+                *appAllowedRoles="[ROLES.ADMIN]"
+                (click)="openDialog({
+                  action: countriesActions.DELETE,
+                  modal: callToActionModal,
+                  extraData: element.action
+                })"
+              >
+                Delete country
+              </button>
+            </ng-template>
+          </mat-menu>
+        </td>
+      </ng-container>
 
-        <tr mat-header-row *matHeaderRowDef="displayedColumns" class="bg-transparent font-medium"></tr>
-        <tr
-          mat-row
-          *matRowDef="let row; columns: displayedColumns"
-          class="hover:bg-gray-100"
-          (click)="navigateToViewCountryPage(row.action)"
-        ></tr>
+      <tr mat-header-row *matHeaderRowDef="displayedColumns" class="bg-transparent font-medium"></tr>
+      <tr
+        mat-row
+        *matRowDef="let row; columns: displayedColumns"
+        class="hover:bg-gray-100"
+        (click)="navigateToViewCountryPage(row.action)"
+      ></tr>
 
-        <tr class="mat-row" *matNoDataRow>
-          <td class="mat-cell" colspan="7">
-            <ng-container [ngTemplateOutlet]="noCountriesData"></ng-container>
-          </td>
-        </tr>
-      </table>
+      <tr class="mat-row" *matNoDataRow>
+        <td class="mat-cell" colspan="7">
+          <ng-container [ngTemplateOutlet]="noCountriesData"></ng-container>
+        </td>
+      </tr>
+    </table>
 
-      <mat-divider class="border-t-gray-200"></mat-divider>
+    <mat-divider class="border-t-gray-200"></mat-divider>
 
-      <div class="w-full flex flex-row items-center justify-end">
-        <mat-paginator
-          [pageSizeOptions]="PAGINATION.DEFAULT_PAGE_SIZE_OPTIONS"
-          [pageSize]="PAGINATION.DEFAULT_PAGE_SIZE"
-          [length]="countries.length"
-          aria-label="Select page of countries"
-        ></mat-paginator>
-      </div>
+    <div class="w-full flex flex-row items-center justify-end">
+      <mat-paginator
+        [pageSizeOptions]="PAGINATION.DEFAULT_PAGE_SIZE_OPTIONS"
+        [pageSize]="PAGINATION.DEFAULT_PAGE_SIZE"
+        [length]="countries.length"
+        aria-label="Select page of countries"
+      ></mat-paginator>
     </div>
-  } @else {
-    <ng-template [ngTemplateOutlet]="noCountriesData"></ng-template>
-  }
+  </div>
 </div>
 
 <ng-template #noCountriesData>
